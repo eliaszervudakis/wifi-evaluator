@@ -7,9 +7,9 @@ from time import sleep
 
 def capture(capture_id):
     # Options
-    capture_seconds = 10
+    capture_seconds = 30
     capture_interface = "en0"
-    channel_list = [4,5,6]
+    channel_list = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     
     capture_folder_tmp = "/private/tmp"
     capture_folder = r'capture/{}'.format(capture_id)

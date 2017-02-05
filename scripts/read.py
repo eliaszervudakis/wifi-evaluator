@@ -8,7 +8,7 @@ def read(capture_id):
     fields_list = ['frame.number', 'frame.time', 'frame.len','frame.cap_len',
     'wlan.sa', 'wlan.da','wlan.ra','wlan.ta','wlan.fcs_bad',
     'radiotap.xchannel.channel','radiotap.xchannel.freq','radiotap.channel.freq','wlan_radio.11n.bandwidth',
-    'wlan_radio.data_rate']
+    'wlan_radio.data_rate','wlan_mgt.ssid']
     fields_string = ' -e '.join(fields_list)
     command = "tshark -r {} -T fields -E header=y -E separator=, -E quote=d -e {}  >  {}".format(capture_file,fields_string,analyzing_file)
     subprocess.Popen(command, shell=True)
