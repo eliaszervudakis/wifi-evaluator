@@ -4,6 +4,7 @@ import getopt
 from scripts.analyze import analyze
 from scripts.read import read
 from scripts.capture import capture
+from time import sleep
 
 def print_usage_info():
     """
@@ -31,6 +32,7 @@ def main(argv):
             capture_id = strftime("%Y.%m.%d_%H-%M-%S", gmtime())
             capture(capture_id)
             read(capture_id)
+            sleep(5)
             analyze(capture_id)
         elif opt == "-c":
             capture_id = strftime("%Y.%m.%d_%H-%M-%S", gmtime())
