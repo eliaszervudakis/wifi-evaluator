@@ -4,7 +4,7 @@ Wireless Networks &amp; Mobile Communitcation
 Athens University of Economics and Business (AUEB)  
 
 Philip Maurer &amp; Elias Zervudakis  
-Licence: MIT License
+Licence: MIT License  
 Platform: macOS
 
 ## Description
