@@ -10,13 +10,12 @@ def print_usage_info():
     """
     Prints usage info to the console.
     """
-    print('usage: run.sh [[-h] | [-d] | [-c] [-i]todo]')
-    print('-h: Show usage info')
-    print('-d: do ALL: capture, read and analyze')
+    print('usage: run.sh [[-h] | [-d] | [-c] | [-r][-a]]')
+    print('-h: Display this usage info')
+    print('-d: Do all: capture, read and analyze')
     print('-c: Only capture')
-    print('-i <channel_id>: Channel IDs (TODO)')
-    print('-r <capture_id>: Read already captured capture')
-    print('-a <capture_id>: Analyze already read capture')
+    print('-r <capture_id>: Read existing capture')
+    print('-a <capture_id>: Analyze existing read')
 
 def main(argv):
     try:
