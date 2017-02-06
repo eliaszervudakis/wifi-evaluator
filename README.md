@@ -1,8 +1,9 @@
 # wifi-evaluator
-Wireless Networks &amp; Mobile Communitcation 
-Athens University of Economics and Business 
-Philip Maurer &amp; Elias Zervudakis 
+Wireless Networks &amp; Mobile Communitcation  
+Athens University of Economics and Business  
+Philip Maurer &amp; Elias Zervudakis  
 
+## usage info
 ```
 usage: run.sh [[-h] | [-d] | [-c] | [-r][-a]]
 -h: Display this usage info
