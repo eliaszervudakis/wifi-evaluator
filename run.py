@@ -14,7 +14,7 @@ def print_usage_info():
     print('usage: run.sh [[-h] | [-d] | [-c] | [-r][-a]]')
     print('-h: Display this usage info')
     print('-d: Do capture, read and analysis')
-    print('-c <cap: Only capture')
+    print('-c <cap>: Only capture')
     print('-r <capture_id>: Read existing capture')
     print('-a <capture_id>: Analyze existing read')
     print('-t <capture_id>: Create LaTeX table for existing analysis')

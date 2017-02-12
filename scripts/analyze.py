@@ -225,13 +225,13 @@ def analyze(capture_id,capture_interval):
         txt_result_file.writelines("\n4B) Utilization and neighboring utilization per channel (Announced duration in seconds)\n")
         txt_result_file.writelines(create_channel_overview_with_neighboring(duration_per_channel_dict,islist=False,padding="05.2f",unit="s"))
 
-        # COMPARISION 5A: Utilization per channel (Airtsize in seconds)
+        # COMPARISION 5A: Utilization per channel (Airtime in seconds)
         # 
         txt_result_file.writelines("\n5A) Utilization per channel (Airtime in seconds, capture interval: {}s)\n".format(capture_interval))
         txt_result_file.writelines(create_channel_overview(airtime_per_channel_dict,islist=False,padding="05.2f",unit="s"))
         # % of interval: airtime/capture_interval*100
 
-        # COMPARISION 5B: Utilization per channel (Airtsize in seconds)
+        # COMPARISION 5B: Utilization per channel (Airtime in seconds)
         # 
         txt_result_file.writelines("\n5B) Utilization and neighboring utilization per channel (Airtime in seconds, capture interval: {}s)\n".format(capture_interval))
         txt_result_file.writelines(create_channel_overview_with_neighboring(airtime_per_channel_dict,islist=False,padding="05.2f",unit="s"))
