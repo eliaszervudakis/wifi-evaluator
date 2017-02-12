@@ -4,6 +4,7 @@ import getopt
 from scripts.analyze import analyze
 from scripts.read import read
 from scripts.capture import capture
+from scripts.create_latex_table import create_latex_table
 from time import sleep
 
 def print_usage_info():
@@ -12,10 +13,11 @@ def print_usage_info():
     """
     print('usage: run.sh [[-h] | [-d] | [-c] | [-r][-a]]')
     print('-h: Display this usage info')
-    print('-d: Do all: capture, read and analyze')
+    print('-d: Do capture, read and analysis')
     print('-c <cap: Only capture')
     print('-r <capture_id>: Read existing capture')
     print('-a <capture_id>: Analyze existing read')
+    print('-t <capture_id>: Create LaTeX table for existing analysis')
 
 def main(argv):
     capture_id_format = "%Y.%m.%d_%H-%M-%S"
@@ -23,7 +25,7 @@ def main(argv):
     capture_interval = 60
 
     try:
-        opts, args = getopt.getopt(argv, "hdcr:a:")
+        opts, args = getopt.getopt(argv, "hdcr:a:t:")
     except getopt.GetoptError:
         print_usage_info()
         sys.exit(2)
@@ -46,6 +48,9 @@ def main(argv):
         elif opt == "-a":
             capture_id = arg
             analyze(capture_id,capture_interval)
+        elif opt == "-t":
+            capture_id = arg
+            create_latex_table(capture_id)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
