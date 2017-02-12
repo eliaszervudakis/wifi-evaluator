@@ -5,31 +5,14 @@ import re
 def read(capture_id):
     # tshark = Wireshark command line tool
     capture_file = r'capture/{}/{}.pcap'.format(capture_id,capture_id)
-    analyzing_file =  r'capture/{}/{}.csv'.format(capture_id,capture_id)
-    analyzing_file2 =  r'capture/{}/{}_2.csv'.format(capture_id,capture_id)
+    output_file =  r'capture/{}/{}.json'.format(capture_id,capture_id)
     
     print("Reading file: {}".format(capture_file))
-    fields_list = ['frame.number', 'frame.time', 'frame.len','frame.cap_len', #0-3
-    'wlan.sa', 'wlan.da','wlan.ra','wlan.ta','wlan.fcs_bad', # 4-8
-    'radiotap.xchannel.channel','radiotap.xchannel.freq','radiotap.channel.freq','wlan_radio.11n.bandwidth', #9-12
-    'wlan_radio.data_rate','wlan_mgt.ssid','wlan.duration'] # 13-15
+    fields_list = ['frame.number', 'frame.time', 'frame.len','frame.cap_len', 'frame.time_relative',
+                    'wlan.sa','wlan.ta', 'wlan.da','wlan.ra','wlan.fcs.status', # 'wlan.fcs_bad' 4-8
+                    'radiotap.xchannel.channel','radiotap.xchannel.freq','radiotap.channel.freq','wlan_radio.channel','wlan_radio.11n.bandwidth', #9-12
+                    'wlan_radio.data_rate','radiotap.datarate','wlan.duration',
+                    'wlan_mgt.ssid']
     fields_string = ' -e '.join(fields_list)
-    command = "tshark -r {} -T fields -E header=y -E separator=, -E quote=d -e {}  >  {}".format(capture_file,fields_string,analyzing_file)
+    command = "tshark -r {} -T json -E header=y -E separator=, -E quote=d -e {}  >  {}".format(capture_file,fields_string,output_file) #-T  fields
     subprocess.Popen(command, shell=True)
-
-    sleep(5)
-
-    # Clean up
-    # TODO: Fix bug
-
-    with open(analyzing_file, 'r+') as csv_analyzing_file:
-        content = csv_analyzing_file.read()
-
-    pattern1 = re.compile(r'"[^"]*[�]+[^"]*"')
-    pattern2 = re.compile(r'"""')
-    content = pattern1.sub("", content)
-    content = pattern1.sub("", content)
-    content = pattern2.sub('""', content)
-
-    with open(analyzing_file2, 'w') as csv_analyzing_file:
-        csv_analyzing_file.write(content)

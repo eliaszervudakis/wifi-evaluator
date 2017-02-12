@@ -5,14 +5,14 @@ import subprocess
 import shutil
 from time import sleep
 
-def capture(capture_id):
+def capture(capture_id,capture_interface,capture_interval):
     # Options
-    capture_seconds = 60
-    capture_interface = "en0"
+    #
     channel_list = [1,2,3,4,5,6,7,8,9,10,11,12,13]
     
     capture_folder_tmp = "/private/tmp"
     capture_folder = r'capture/{}'.format(capture_id)
+    #
 
     # Delete old capture files
     for file in glob.glob("{}/airportSniff*.cap".format(capture_folder_tmp)):
@@ -24,13 +24,13 @@ def capture(capture_id):
     if not os.path.exists(capture_folder):
         os.makedirs(capture_folder)
 
-    # Capture traffic for capture_seconds seconds on capture_channel on capture_interface
+    # Capture traffic for capture_interval seconds on capture_channel on capture_interface
     for capture_channel in channel_list:
         print("Capturing traffic on channel {}".format(capture_channel))
         command = "airport {} sniff {}".format(capture_interface,capture_channel)
         pro = subprocess.Popen(command, stdout=subprocess.PIPE, 
                                shell=True, preexec_fn=os.setsid) 
-        sleep(capture_seconds)
+        sleep(capture_interval)
         os.killpg(os.getpgid(pro.pid), signal.SIGINT)
 
     print("")
